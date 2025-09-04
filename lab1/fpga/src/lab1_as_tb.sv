@@ -1,3 +1,13 @@
+/* 
+Name: Aabhas Senapati
+Email: asenapati@hmc.edu
+Date: 03-09-2025
+
+Aim: Testbench Code to test top module lab1_as and check if it correctly drives built-in leds, and seven segment display based on switches inputs in simulation. 
+
+*/
+
+
 `timescale 1ns/1ps
 
 module lab1_as_tb();
