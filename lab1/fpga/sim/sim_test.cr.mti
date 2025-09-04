@@ -1,0 +1,22 @@
+C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module lab1_as
+
+Top level modules:
+	lab1_as
+
+} {} {}} C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_led_builtin.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_led_builtin.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module drive_led_builtin
+
+Top level modules:
+	drive_led_builtin
+
+} {} {}} C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_seven_seg.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_seven_seg.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module drive_seven_seg
+
+Top level modules:
+	drive_seven_seg
+
+} {} {}}

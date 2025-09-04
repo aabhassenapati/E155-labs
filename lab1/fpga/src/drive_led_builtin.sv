@@ -16,7 +16,7 @@ module drive_led_builtin(input logic clk,
    logic [23:0] counter;
   
    // Counter that divides the clock signal by 5000000 to get 2.4Hz led blinking from 24MHz clock
-   always_ff @(posedge clk) begin
+   always_ff @(posedge clk, negedge reset) begin
      if(reset == 0) begin
 		counter <= 0;
 		led_state <= 0;

@@ -1,0 +1,131 @@
+m255
+K4
+z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/radiant_project/lab1
+T_opt
+!s110 1756958543
+V1^O0@]Xe>fW[id34dciH^2
+04 10 4 work lab1_as_tb fast 0
+=6-00be43eaec61-68b90f4f-bb-4c94
+R1
+!s12f OEM25U3 
+!s12b OEM100
+!s124 OEM100
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work -L iCE40UP +acc
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2024.2;79
+vdrive_led_builtin
+2C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_led_builtin.sv
+Z3 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z4 !s110 1756958538
+!i10b 1
+!s100 >0oMGmDk:`eSJVQSJHKdV2
+I7gF1lV25]L1On^L[ho5fK0
+S1
+Z5 dC:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/sim
+w1756957886
+8C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_led_builtin.sv
+FC:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_led_builtin.sv
+!i122 16
+L0 10 31
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OL;L;2024.2;79
+r1
+!s85 0
+31
+Z8 !s108 1756958538.000000
+!s107 C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_led_builtin.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_led_builtin.sv|
+!i113 0
+Z9 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vdrive_seven_seg
+2C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_seven_seg.sv
+R3
+R4
+!i10b 1
+!s100 RE^bO_kZbk7hZC1@?8Goc3
+IgaQ8?XR]Q@IAU2RGMWKAh2
+S1
+R5
+w1756947214
+8C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_seven_seg.sv
+FC:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_seven_seg.sv
+!i122 17
+L0 10 25
+R6
+R7
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_seven_seg.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/drive_seven_seg.sv|
+!i113 0
+R9
+R2
+vlab1_as
+2C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as.sv
+R3
+R4
+!i10b 1
+!s100 UDn1SDMz2M1e8`LkEQ9IC0
+I`bFXcm<OR2ke812^XLM1h3
+S1
+R5
+w1756946960
+8C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as.sv
+FC:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as.sv
+!i122 18
+L0 10 16
+R6
+R7
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as.sv|
+!i113 0
+R9
+R2
+vlab1_as_tb
+2C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv
+R3
+R4
+!i10b 1
+!s100 OJ0LCH9JcVdBL;O;iez6]3
+I24O<cHA`o=<^EzJ6f=z=20
+S1
+R5
+w1756958515
+8C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv
+FC:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv
+!i122 19
+L0 3 91
+R6
+R7
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv|
+!i113 0
+R9
+R2
