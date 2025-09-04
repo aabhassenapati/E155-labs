@@ -1,0 +1,235 @@
+# Reading pref.tcl
+# //  Questa Lattice OEM Edition-64
+# //  Version 2024.2 win64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading project sim_test
+# Compile of drive_led_builtin.sv was successful.
+# Compile of drive_seven_seg.sv was successful.
+# Compile of lab1_as.sv was successful.
+# Compile of lab1_as_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.lab1_as_tb -voptargs=+acc -L iCE40UP
+# vsim -gui work.lab1_as_tb -voptargs="+acc" -L iCE40UP 
+# Start time: 20:36:36 on Sep 03,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.lab1_as_tb(fast)
+# Loading work.lab1_as(fast)
+# Loading iCE40UP.HSOSC(fast)
+# Loading work.drive_led_builtin(fast)
+# Loading work.drive_seven_seg(fast)
+run -all
+# Error: led_builtin[2] not reset
+# Success at switch=0
+# Success at switch=1
+# Error at switch=2
+# Success at switch=3
+# Success at switch=4
+# Success at switch=5
+# Error at switch=6
+# Success at switch=7
+# Success at switch=8
+# Success at switch=9
+# Error at switch=A
+# Success at switch=B
+# Success at switch=C
+# Error at switch=D
+# Success at switch=E
+# Success at switch=F
+# ** Note: $finish    : C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv(95)
+#    Time: 192 ns  Iteration: 0  Instance: /lab1_as_tb
+# 1
+# Break in Module lab1_as_tb at C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv line 95
+add wave  \
+sim:/lab1_as_tb/clk \
+sim:/lab1_as_tb/reset \
+sim:/lab1_as_tb/switch \
+sim:/lab1_as_tb/led_builtin \
+sim:/lab1_as_tb/seven_seg
+run -all
+# Break key hit
+# Simulation stop requested.
+run -all
+# Break key hit
+# Simulation stop requested.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.lab1_as_tb(fast)
+# Loading work.lab1_as(fast)
+# Loading iCE40UP.HSOSC(fast)
+# Loading work.drive_led_builtin(fast)
+# Loading work.drive_seven_seg(fast)
+run 1000 ns
+# Error: led_builtin[2] not reset
+# Success at switch=0
+# Success at switch=1
+# Error at switch=2
+# Success at switch=3
+# Success at switch=4
+# Success at switch=5
+# Error at switch=6
+# Success at switch=7
+# Success at switch=8
+# Success at switch=9
+# Error at switch=A
+# Success at switch=B
+# Success at switch=C
+# Error at switch=D
+# Success at switch=E
+# Success at switch=F
+# ** Note: $finish    : C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv(95)
+#    Time: 192 ns  Iteration: 0  Instance: /lab1_as_tb
+# 1
+# Break in Module lab1_as_tb at C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv line 95
+# Compile of drive_led_builtin.sv was successful.
+# Compile of drive_seven_seg.sv was successful.
+# Compile of lab1_as.sv was successful.
+# Compile of lab1_as_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# Break key hit
+# Simulation stop requested.
+run 1000 ns
+run
+run 1000 ns
+# Compile of drive_led_builtin.sv was successful.
+# Compile of drive_seven_seg.sv was successful.
+# Compile of lab1_as.sv was successful.
+# Compile of lab1_as_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run 1000 ns
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.lab1_as_tb(fast)
+# Loading work.lab1_as(fast)
+# Loading iCE40UP.HSOSC(fast)
+# Loading work.drive_led_builtin(fast)
+# Loading work.drive_seven_seg(fast)
+run 1000 ns
+# Success: led_builtin[2] reset correctly
+# Success at switch=0
+# Success at switch=1
+# Error at switch=2
+# Success at switch=3
+# Success at switch=4
+# Success at switch=5
+# Error at switch=6
+# Success at switch=7
+# Success at switch=8
+# Success at switch=9
+# Error at switch=A
+# Success at switch=B
+# Success at switch=C
+# Error at switch=D
+# Success at switch=E
+# Success at switch=F
+# ** Note: $finish    : C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv(91)
+#    Time: 192 ns  Iteration: 0  Instance: /lab1_as_tb
+# 1
+# Break in Module lab1_as_tb at C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv line 91
+# Compile of drive_led_builtin.sv was successful.
+# Compile of drive_seven_seg.sv was successful.
+# Compile of lab1_as.sv was successful.
+# Compile of lab1_as_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.lab1_as_tb(fast)
+# Loading work.lab1_as(fast)
+# Loading iCE40UP.HSOSC(fast)
+# Loading work.drive_led_builtin(fast)
+# Loading work.drive_seven_seg(fast)
+run 1000 ns
+# Success: led_builtin[2] reset correctly
+# Success at switch=0
+# Success at switch=1
+# Error at switch=2
+# Success at switch=3
+# Success at switch=4
+# Success at switch=5
+# Error at switch=6
+# Success at switch=7
+# Success at switch=8
+# Success at switch=9
+# Error at switch=A
+# Success at switch=B
+# Success at switch=C
+# Error at switch=D
+# Success at switch=E
+# Success at switch=F
+# ** Note: $finish    : C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv(91)
+#    Time: 192 ns  Iteration: 0  Instance: /lab1_as_tb
+# 1
+# Break in Module lab1_as_tb at C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv line 91
+# Break key hit
+# Break key hit
+# Break key hit
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.lab1_as_tb(fast)
+# Loading work.lab1_as(fast)
+# Loading iCE40UP.HSOSC(fast)
+# Loading work.drive_led_builtin(fast)
+# Loading work.drive_seven_seg(fast)
+# Compile of drive_led_builtin.sv was successful.
+# Compile of drive_seven_seg.sv was successful.
+# Compile of lab1_as.sv was successful.
+# Compile of lab1_as_tb.sv was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.lab1_as_tb(fast)
+# Loading work.lab1_as(fast)
+# Loading iCE40UP.HSOSC(fast)
+# Loading work.drive_led_builtin(fast)
+# Loading work.drive_seven_seg(fast)
+run 1000 ns
+# Success: led_builtin[2] reset correctly
+# Success at switch=0
+# Success at switch=1
+# Success at switch=2
+# Success at switch=3
+# Success at switch=4
+# Success at switch=5
+# Success at switch=6
+# Success at switch=7
+# Success at switch=8
+# Success at switch=9
+# Success at switch=A
+# Success at switch=B
+# Success at switch=C
+# Success at switch=D
+# Success at switch=E
+# Success at switch=F
+# ** Note: $finish    : C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv(91)
+#    Time: 192 ns  Iteration: 0  Instance: /lab1_as_tb
+# 1
+# Break in Module lab1_as_tb at C:/Users/asenapati/Documents/GitHub/E155-labs/lab1/fpga/src/lab1_as_tb.sv line 91
+run 1000 ns
