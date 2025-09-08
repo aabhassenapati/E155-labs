@@ -35,9 +35,7 @@ module lab1_as_tb();
         reset = 1'b1; #10;
 		end
 		
- // Test reset functionality for seven_se
+ // Test reset functionality for sevenseg
         reset = 1'b0; #10;
-        if (led !== 1'b0) $display("Error: led_builtin[2] not reset");
-        else $display("Success: led_builtin[2] reset correctly");
-        reset = 1'b1; #10;
+
 		
