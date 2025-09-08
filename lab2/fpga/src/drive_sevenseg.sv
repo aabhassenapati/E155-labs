@@ -35,8 +35,8 @@ module drive_sevenseg( input logic clk,
    
 // leds work on inverted logic where the corresponding segnment of led turns on when its pulled down to ground, ie active low;
 
-  assign enseg1 = clk_new?1:0; 
-  assign enseg2 = clk_new?0:1; 
+  assign enseg1 = reset?(clk_new?1:0):1; 
+  assign enseg2 = reset?(clk_new?0:1):1; 
   
   always_comb begin
 	case(clk_new?sw6:extsw)
