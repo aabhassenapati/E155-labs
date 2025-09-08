@@ -12,30 +12,38 @@ Aim: Testbench Code to test top module lab2_as and check if it correctly drives 
 
 module lab1_as_tb();
 
-   	logic clk;		   
+   	logic clk_test;		   
 	logic reset;
 	logic [3:0] sw6;
 	logic [3:0] extsw;
 	logic enseg1;
 	logic enseg2;
 	logic [6:0] sevenseg;
-	logic [4:0] leds)
-	
- // generate clock
-  always   
-    begin
-      clk = 1; #5; clk = 0; #5;
-    end 
-	
-   
- // Reset sequence - active LOW reset
+	logic [4:0] leds;
+
+// DUT instantiation
+lab2_as dut(.reset(reset), .sw6(sw6), .enseg1(enseg1), .enseg2(enseg2), .sevenseg(sevenseg), .leds(leds));
+
+assign clk_test = dut.int_osc;
   initial begin 
+ // Reset sequence - active LOW reset
         reset = 1'b1; #1;
         reset = 1'b0; #1;
         reset = 1'b1; #10;
-		end
-		
+	
  // Test reset functionality for sevenseg
         reset = 1'b0; #10;
+		assert(enseg1==0&&enseg2==0) $display("Error: leds not reset");
+		reset = 1'b1; #10;
+ 
+ // Test switch conditions
+sw6 = 0; extsw =0; #10000
+  if(enseg1 ==0) begin
+	  assert(leds==0&& sevenseg==0);
+		end
+		$finish;
+    end
+endmodule
+		
 
 		
