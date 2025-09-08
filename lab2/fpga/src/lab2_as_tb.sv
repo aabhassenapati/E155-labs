@@ -22,7 +22,7 @@ module lab1_as_tb();
 	logic [4:0] leds;
 
 // DUT instantiation
-lab2_as dut(.reset(reset), .sw6(sw6), .enseg1(enseg1), .enseg2(enseg2), .sevenseg(sevenseg), .leds(leds));
+lab2_as dut(reset,sw6,extsw,enseg1,enseg2,sevenseg,leds);
 
 assign clk_test = dut.int_osc;
   initial begin 
