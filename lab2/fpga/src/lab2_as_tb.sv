@@ -1,4 +1,3 @@
-
 /* 
 Name: Aabhas Senapati
 Email: asenapati@hmc.edu
@@ -12,32 +11,95 @@ Aim: Testbench Code to test top module lab2_as and check if it correctly drives 
 
 module lab1_as_tb();
 
-   	logic clk;		   
+   	logic clk_test;		   
 	logic reset;
 	logic [3:0] sw6;
 	logic [3:0] extsw;
 	logic enseg1;
 	logic enseg2;
 	logic [6:0] sevenseg;
-	logic [4:0] leds)
+	logic [4:0] leds;
 	
- // generate clock
-  always   
-    begin
-      clk = 1; #5; clk = 0; #5;
-    end 
+	// Expected seven segment patterns for hex digits 0-F
+	logic [6:0] expected_sevenseg [16] = '{
+		7'b1000000, // 0
+		7'b1111001, // 1
+		7'b0100100, // 2
+		7'b0110000, // 3
+		7'b0011001, // 4
+		7'b0010010, // 5
+		7'b0000010, // 6
+		7'b1111000, // 7
+		7'b0000000, // 8
+		7'b0011000, // 9
+		7'b0001000, // A
+		7'b0000011, // b
+		7'b1000110, // C
+		7'b0100001, // d
+		7'b0000110, // E
+		7'b0001110  // F
+	};
+
+// DUT instantiation
+lab2_as dut(reset,sw6,extsw,enseg1,enseg2,sevenseg,leds);
+
+assign clk_test = dut.int_osc;
+
+initial begin 
+	$display("Starting testbench...");
 	
-   
- // Reset sequence - active LOW reset
-  initial begin 
-        reset = 1'b1; #1;
-        reset = 1'b0; #1;
-        reset = 1'b1; #10;
+	// Reset sequence - active LOW reset
+	reset = 1'b1; #1;
+	reset = 1'b0; #1;
+	reset = 1'b1; #10;
+
+	// Test reset functionality for sevenseg
+	reset = 1'b0; #10;
+	assert(enseg1 == 1 && enseg2 == 1) 
+		$display("PASS: Seven segment displays disabled during reset");
+	else 
+		$display("ERROR: Seven segment displays not properly disabled during reset");
+	
+	reset = 1'b1; #10;
+
+	// Test all combinations of sw6 and extsw (16 x 16 = 256 test cases)
+	for(int i = 0; i < 16; i++) begin
+		for(int j = 0; j < 16; j++) begin
+			sw6 = i[3:0];
+			extsw = j[3:0];
+			
+			#1000; // Wait for multiple clock cycles to see both displays alternate
+			
+			// Check LED sum
+			assert(leds == (sw6 + extsw)) 
+				$display("PASS: sw6=%h, extsw=%h, LEDs=%h", sw6, extsw, leds);
+			else 
+				$display("ERROR: sw6=%h, extsw=%h, LEDs=%h (expected %h)", 
+					sw6, extsw, leds, sw6 + extsw);
+			
+			// Sample seven segment display during both phases
+			// Wait for enseg1 to be active (displaying extsw)
+			wait(enseg1 == 0 && enseg2 == 1);
+			#1000; // Small delay to ensure stable output (0.1ms)
+			assert(sevenseg == expected_sevenseg[extsw]) 
+				$display("PASS: extsw=%h displayed correctly on seg1", extsw);
+			else 
+				$display("ERROR: extsw=%h on seg1, got pattern=%b, expected=%b", 
+					extsw, sevenseg, expected_sevenseg[extsw]);
+			
+			// Wait for enseg2 to be active (displaying sw6)
+			wait(enseg1 == 1 && enseg2 == 0);
+			#1000; // Small delay to ensure stable output
+			assert(sevenseg == expected_sevenseg[sw6]) 
+				$display("PASS: sw6=%h displayed correctly on seg2", sw6);
+			else 
+				$display("ERROR: sw6=%h on seg2, got pattern=%b, expected=%b", 
+					sw6, sevenseg, expected_sevenseg[sw6]);
 		end
-		
- // Test reset functionality for seven_se
-        reset = 1'b0; #10;
-        if (led !== 1'b0) $display("Error: led_builtin[2] not reset");
-        else $display("Success: led_builtin[2] reset correctly");
-        reset = 1'b1; #10;
-		
+	end
+	
+	$display("\nTestbench completed!");
+	$finish;
+end
+
+endmodule
