@@ -115,7 +115,7 @@ initial begin
 	
 	// Final error count
 	$display("\nTestbench completed!");
-	$display("Total Tests: %0d", test_count);
+	$display("Total Tests: %0d", total_tests);
 	$display("Total Errors: %0d", error_count);
 	if(error_count == 0) 
 		$display("All tests PASSED!");
