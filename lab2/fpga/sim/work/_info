@@ -1,0 +1,102 @@
+m255
+K4
+z2
+!s12c _opt
+Z0 !s99 nomlopt
+!s11f vlog 2024.2 2024.05, May 20 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/radiant_project/lab2
+T_opt
+!s110 1757385163
+VDoT0KT;9XNT6W<<L:iM=Q2
+04 10 4 work lab1_as_tb fast 0
+=1-001c42499678-68bf91c8-1cc-1da4
+R0
+!s12f OEM25U3 
+!s12b OEM100
+!s124 OEM100
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work -L iCE40UP -Lf iCE40UP +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2024.2;79
+vdrive_sevenseg
+2C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/drive_sevenseg.sv
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+!s110 1757385106
+!i10b 1
+!s100 VEWT;kffCSo4JUlFncgni1
+IjQm1kHIaB7nJ:_>O:TNOA1
+S1
+Z3 dC:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/sim
+Z4 w1757358270
+8C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/drive_sevenseg.sv
+FC:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/drive_sevenseg.sv
+!i122 3
+L0 10 53
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2024.2;79
+r1
+!s85 0
+31
+!s108 1757385106.000000
+!s107 C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/drive_sevenseg.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/drive_sevenseg.sv|
+!i113 0
+Z7 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vlab1_as_tb
+2C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as_tb.sv
+R2
+Z8 !s110 1757385107
+!i10b 1
+!s100 e8o3BLV1;oaVZGQ0?6?lL1
+IBX;6C`cG<RFzz15U8z4Qa1
+S1
+R3
+w1757385061
+8C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as_tb.sv
+FC:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as_tb.sv
+!i122 5
+L0 12 116
+R5
+R6
+r1
+!s85 0
+31
+Z9 !s108 1757385107.000000
+!s107 C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as_tb.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as_tb.sv|
+!i113 0
+R7
+R1
+vlab2_as
+2C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as.sv
+R2
+R8
+!i10b 1
+!s100 LUl=Y8C8T88:ij7zAofB51
+I_Eb6Kid^5HBojWfBTY4Rf3
+S1
+R3
+R4
+8C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as.sv
+FC:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as.sv
+!i122 4
+L0 10 19
+R5
+R6
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as.sv|
+!i113 0
+R7
+R1

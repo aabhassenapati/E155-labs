@@ -1,0 +1,15 @@
+C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/drive_sevenseg.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/drive_sevenseg.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module drive_sevenseg
+
+Top level modules:
+	drive_sevenseg
+
+} {} {}} C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/src/lab2_as.sv
+Questa Lattice OEM Edition-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+-- Compiling module lab2_as
+
+Top level modules:
+	lab2_as
+
+} {} {}}
