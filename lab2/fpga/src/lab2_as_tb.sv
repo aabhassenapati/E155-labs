@@ -1,7 +1,7 @@
 /* 
 Name: Aabhas Senapati
 Email: asenapati@hmc.edu
-Date: 07-09-2025
+Date: 08-09-2025
 
 Aim: Testbench Code to test top module lab2_as and check if it correctly drives the leds, and seven segment display based on switches inputs in simulation. 
 
@@ -9,9 +9,9 @@ Aim: Testbench Code to test top module lab2_as and check if it correctly drives 
 
 `timescale 1ns/1ps
 
-module lab1_as_tb();
+module lab2_as_tb();
 	
-   	logic clk_test;		   
+   	logic clk_new;		   
 	logic reset;
 	logic [3:0] sw6;
 	logic [3:0] extsw;
@@ -44,84 +44,108 @@ module lab1_as_tb();
 		7'b0001110  // F
 	};
 
-// DUT instantiation
-lab2_as dut(reset,sw6,extsw,enseg1,enseg2,sevenseg,leds);
-assign clk_test = dut.int_osc;
+	// DUT instantiation
+	lab2_as dut(reset,sw6,extsw,enseg1,enseg2,sevenseg,leds);
 
-initial begin 
-	$display("Starting testbench...");
-	
-	// Reset sequence - active LOW reset
-	reset = 1'b1; #1;
-	reset = 1'b0; #1;
-	reset = 1'b1; #10;
-	
-	// Test reset functionality for sevenseg
-	reset = 1'b0; #10;
-	total_tests++;
-	if(enseg1 == 1 && enseg2 == 1) begin
-		$display("PASS: Seven segment displays disabled during reset");
-	end else begin
-		$display("ERROR: Seven segment displays not properly disabled during reset");
-		error_count++;
-	end
-	
-	reset = 1'b1; #10;
-	
-	// Test all combinations of sw6 and extsw (16 x 16 = 256 test cases)
-	for(int i = 0; i < 16; i++) begin
-		for(int j = 0; j < 16; j++) begin
-			sw6 = i[3:0];
-			extsw = j[3:0];
+	// map the clock signal to visualize
+	assign clk_new = dut.clk_new;
+
+	initial begin 
+		$display("Starting lab2_as testbench...");
+		
+		// Reset sequence - active LOW reset
+		reset = 1'b1; #1;
+		reset = 1'b0; #1;
+		reset = 1'b1; #10;
+		
+		// Test reset functionality for sevenseg
+		reset = 1'b0; #10;
+		total_tests++;
+		assert(enseg1 == 1 && enseg2 == 1) begin
+			$display("PASS: Seven segment displays disabled during reset");
+		end else begin
+			$display("ERROR: Seven segment displays not properly disabled during reset");
+			error_count++;
+		end
+		
+		reset = 1'b1; #10;
+		
+		// Test if enable segment signal switches correctly with the divided clock signal
+		
+		wait(clk_new);
+		#1
+		total_tests++;
+		assert(enseg1 == 1 && enseg2 == 0) begin
+			$display("PASS: Segment switching works correctly when clock signal is high");
+		end else begin
+			$display("ERROR: Segment switching does not work correctly when clock signal is high");
+			error_count++;
+		end
+		
+		wait(~clk_new);
+		#1
+		total_tests++;
+		assert(enseg1 == 0 && enseg2 == 1) begin
+			$display("PASS: Segment switching works correctly when clock signal is low");
+		end else begin
+			$display("ERROR: Segment switching does not work correctly when clock signal is low");
+			error_count++;
+		end
 			
-			#1000; // Wait for multiple clock cycles to see both displays alternate
-			
-			// Check LED sum
-			total_tests++;
-			if(leds == (sw6 + extsw)) begin
-				$display("PASS: sw6=%h, extsw=%h, LEDs=%h", sw6, extsw, leds);
-			end else begin
-				$display("ERROR: sw6=%h, extsw=%h, LEDs=%h (expected %h)", 
-					sw6, extsw, leds, sw6 + extsw);
-				error_count++;
-			end
-			
-			// Sample seven segment display during both phases
-			// Wait for enseg1 to be active (displaying extsw)
-			wait(enseg1 == 0 && enseg2 == 1);
-			#1000; // Small delay to ensure stable output (0.1ms)
-			total_tests++;
-			if(sevenseg == expected_sevenseg[extsw]) begin
-				$display("PASS: extsw=%h displayed correctly on seg1", extsw);
-			end else begin
-				$display("ERROR: extsw=%h on seg1, got pattern=%b, expected=%b", 
-					extsw, sevenseg, expected_sevenseg[extsw]);
-				error_count++;
-			end
-			
-			// Wait for enseg2 to be active (displaying sw6)
-			wait(enseg1 == 1 && enseg2 == 0);
-			#1000; // Small delay to ensure stable output
-			total_tests++;
-			assert(sevenseg == expected_sevenseg[sw6]) begin
-				$display("PASS: sw6=%h displayed correctly on seg2", sw6);
-			end else begin
-				$display("ERROR: sw6=%h on seg2, got pattern=%b, expected=%b", 
-					sw6, sevenseg, expected_sevenseg[sw6]);
-				error_count++;
+		// Test all combinations of sw6 and extsw (16 x 16 = 256 test cases)
+		for(int i = 0; i < 16; i++) begin
+			for(int j = 0; j < 16; j++) begin
+				sw6 = i[3:0];
+				extsw = j[3:0];
+				
+				#1000; // Wait for multiple clock cycles to see both displays alternate
+				
+				// Check LED sum
+				total_tests++;
+				assert(leds == (sw6 + extsw)) begin
+					$display("PASS: sw6=%h, extsw=%h, LEDs=%h", sw6, extsw, leds);
+				end else begin
+					$display("ERROR: sw6=%h, extsw=%h, LEDs=%h (expected %h)", 
+						sw6, extsw, leds, sw6 + extsw);
+					error_count++;
+				end
+				
+				// Sample seven segment display during both phases
+				// Wait for enseg1 to be active (displaying extsw)
+				wait(enseg1 == 0 && enseg2 == 1);
+				#1000; // Small delay to ensure stable output (0.1ms)
+				total_tests++;
+				assert(sevenseg == expected_sevenseg[extsw]) begin
+					$display("PASS: extsw=%h displayed correctly on seg1", extsw);
+				end else begin
+					$display("ERROR: extsw=%h on seg1, got pattern=%b, expected=%b", 
+						extsw, sevenseg, expected_sevenseg[extsw]);
+					error_count++;
+				end
+				
+				// Wait for enseg2 to be active (displaying sw6)
+				wait(enseg1 == 1 && enseg2 == 0);
+				#1000; // Small delay to ensure stable output
+				total_tests++;
+				assert(sevenseg == expected_sevenseg[sw6]) begin
+					$display("PASS: sw6=%h displayed correctly on seg2", sw6);
+				end else begin
+					$display("ERROR: sw6=%h on seg2, got pattern=%b, expected=%b", 
+						sw6, sevenseg, expected_sevenseg[sw6]);
+					error_count++;
+				end
 			end
 		end
+		
+		// Final error count
+		$display("\nlab2_as Testbench completed!");
+		$display("Total Tests: %0d", total_tests);
+		$display("Total Errors: %0d", error_count);
+		if(error_count == 0) 
+			$display("All tests PASSED!");
+		else 
+			$display("%0d test(s) FAILED", error_count);
+		
+		$finish;
 	end
-	
-	// Final error count
-	$display("\nTestbench completed!");
-	$display("Total Tests: %0d", total_tests);
-	$display("Total Errors: %0d", error_count);
-	if(error_count == 0) 
-		$display("All tests PASSED!");
-	else 
-		$display("%0d test(s) FAILED", error_count);
-	
-	$finish;
-end
 endmodule
