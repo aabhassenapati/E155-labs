@@ -70,9 +70,16 @@ module lab2_as_tb();
 		
 		reset = 1'b1; #10;
 		
+		wait(dut.int_osc);
+		$display("PASS: Internal Oscillator toggled high");
+		
+		wait(~dut.int_osc);
+		$display("PASS: Internal Oscillator toggled low");
+		
 		// Test if enable segment signal switches correctly with the divided clock signal
 		
 		wait(clk_new);
+		$display("PASS: Divided Clock toggled high");
 		#1
 		total_tests++;
 		assert(enseg1 == 1 && enseg2 == 0) begin
@@ -83,6 +90,7 @@ module lab2_as_tb();
 		end
 		
 		wait(~clk_new);
+		$display("PASS: Divided Clock toggled low");
 		#1
 		total_tests++;
 		assert(enseg1 == 0 && enseg2 == 1) begin
