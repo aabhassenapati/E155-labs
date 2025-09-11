@@ -25,7 +25,12 @@ module lab2_as(input logic reset,
 				
 				clock_divider cd(int_osc, reset, clk_new);
 				
-				drive_dual_sevenseg ddss(clk_new, reset, sw6, extsw, enseg1, enseg2, sevenseg);
+				// leds work on inverted logic where the corresponding segnment of led turns on when its pulled down to ground, ie active low;
+				// Enables segment 2 on the when clock is high, and segment 1 when clock is low
+				assign enseg1 = reset?(clk_new?1:0):1; 
+				assign enseg2 = reset?(clk_new?0:1):1; 
+				
+				drive_dual_sevenseg ddss(clk_new, sw6, extsw, sevenseg);
 				
 endmodule
 

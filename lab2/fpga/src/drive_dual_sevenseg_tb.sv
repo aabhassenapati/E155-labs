@@ -12,11 +12,8 @@ Aim: Testbench Code to test drive_sevenseg module and verify seven segment displ
 module drive_dual_sevenseg_tb();
 
 	logic clk;
-	logic reset;
 	logic [3:0] sw6;
 	logic [3:0] extsw;
-	logic enseg1;
-	logic enseg2;
 	logic [6:0] sevenseg;
 	
 	// Error counter
@@ -44,68 +41,27 @@ module drive_dual_sevenseg_tb();
 	};
 
 	// DUT instantiation
-	drive_dual_sevenseg dut(clk, reset, sw6, extsw, enseg1, enseg2, sevenseg);
+	drive_dual_sevenseg dut(clk, sw6, extsw, sevenseg);
 
-	// Simple clock generation
-	initial begin
-		clk = 0;
-		forever #1 clk = ~clk;
-	end
+	// generates clock
+	always
+		begin
+			clk = 1; #5; clk = 0; #5;
+		end
 
 	initial begin 
 		$display("Starting drive_dual_sevenseg testbench...");
-		
-		// Reset sequence - active LOW reset
-		reset = 1'b1; #1;
-		reset = 1'b0; #1;
-		reset = 1'b1; #10;
-		
-		// Test reset functionality for sevenseg
-		reset = 1'b0; #10;
-		total_tests++;
-		assert(enseg1 == 1 && enseg2 == 1) begin
-			$display("PASS: Seven segment displays disabled during reset");
-		end else begin
-			$display("ERROR: Seven segment displays not properly disabled during reset");
-			error_count++;
-		end
-		
-		reset = 1'b1; #10;
-		
-		// Test if enable segment signal switches correctly with the divided clock signal
-		
-		wait(clk);
-		#1
-		total_tests++;
-		assert(enseg1 == 1 && enseg2 == 0) begin
-			$display("PASS: Segment switching works correctly when clock signal is high");
-		end else begin
-			$display("ERROR: Segment switching does not work correctly when clock signal is high");
-			error_count++;
-		end
-		
-		wait(~clk);
-		#1
-		total_tests++;
-		assert(enseg1 == 0 && enseg2 == 1) begin
-			$display("PASS: Segment switching works correctly when clock signal is low");
-		end else begin
-			$display("ERROR: Segment switching does not work correctly when clock signal is low");
-			error_count++;
-		end
-
+			
 		// Test all combinations of sw6 and extsw (16 x 16 = 256 test cases)
 		for(int i = 0; i < 16; i++) begin
 			for(int j = 0; j < 16; j++) begin
 				sw6 = i[3:0];
 				extsw = j[3:0];
-				
-				#1000; // Wait for multiple clock cycles
-				
+
 				// Sample seven segment display during both phases
 				// Wait for enseg1 to be active (displaying extsw)
-				wait(enseg1 == 0 && enseg2 == 1);
-				#1000; // Small delay to ensure stable output
+				wait(~clk);
+				#1; // Let inputs settle before testing 
 				total_tests++;
 				assert(sevenseg == expected_sevenseg[extsw]) begin
 					$display("PASS: extsw=%h displayed correctly on seg1", extsw);
@@ -116,8 +72,8 @@ module drive_dual_sevenseg_tb();
 				end
 				
 				// Wait for enseg2 to be active (displaying sw6)
-				wait(enseg1 == 1 && enseg2 == 0);
-				#1000; // Small delay to ensure stable output
+				wait(clk);
+				#1; // Let inputs settle before testing
 				total_tests++;
 				assert(sevenseg == expected_sevenseg[sw6]) begin
 					$display("PASS: sw6=%h displayed correctly on seg2", sw6);
@@ -130,7 +86,7 @@ module drive_dual_sevenseg_tb();
 		end
 		
 		// Final error count
-		$display("\ndrive_dual_sevenseg testbench completed!");
+		$display("\ndrive_dual_sevenseg Testbench completed!");
 		$display("Total Tests: %0d", total_tests);
 		$display("Total Errors: %0d", error_count);
 		if(error_count == 0) 
@@ -140,5 +96,4 @@ module drive_dual_sevenseg_tb();
 		
 		$finish;
 	end
-
 endmodule

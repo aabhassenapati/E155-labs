@@ -1,0 +1,1 @@
+C:/lscc/radiant/2025.1/questasim/win64/VisualizerRls/bin/viscom.exe -nolock -quiet -jmem_size 393216 work.drive_dual_sevenseg_tb(fast) -quiet -auto_acc_if_foreign -work work -L iCE40UP -Lf iCE40UP +acc -allow_unnamed -o _opt2 -id 2-001c42499678-68c29ca1-354-1258 +__design_bin_path+C:/Users/aabhassenapati/Documents/E155-labs/lab2/fpga/sim +__betafsm

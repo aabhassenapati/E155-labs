@@ -9,7 +9,7 @@ Aim: Testbench Code to test top module lab2_as and check if it correctly drives 
 
 `timescale 1ns/1ps
 
-module lab1_as_tb();
+module lab2_as_tb();
 	
    	logic clk_new;		   
 	logic reset;

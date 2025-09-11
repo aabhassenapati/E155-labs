@@ -8,19 +8,11 @@ Aim: Module Code for driving the dual seven segment display, based on the inputs
 */
 
 module drive_dual_sevenseg(input logic clk_new,
-						   input logic reset,
 						   input logic [3:0] sw6,
 						   input logic [3:0] extsw,
-						   output logic enseg1,
-						   output logic enseg2,
 						   output logic [6:0] sevenseg);					   
    
-// leds work on inverted logic where the corresponding segnment of led turns on when its pulled down to ground, ie active low;
-
-
-// Enables segment 2 on the when clock is high, and segment 1 when clock is low
-  assign enseg1 = reset?(clk_new?1:0):1; 
-  assign enseg2 = reset?(clk_new?0:1):1; 
+// leds work on inverted logic where the corresponding segnment of led turns on when its pulled down to ground, ie active low.
   
 //decoder to display 4 bit switch input of the enables segment on the corresponding 7 segment display.
   always_comb begin
