@@ -13,3 +13,13 @@
 # // of the Customer's facilities without the express written permission of SISW,
 # // and may not be used in any way not expressly authorized by SISW.
 # //
+# Loading project allmodule_simulation
+# Compile of clock_divider.sv was successful.
+# Compile of clock_divider_tb.sv was successful.
+# Compile of drive_dual_sevenseg.sv was successful.
+# Compile of drive_dual_sevenseg_tb.sv was successful.
+# Compile of four_bit_adder.sv was successful.
+# Compile of four_bit_adder_tb.sv was successful.
+# Compile of lab2_as.sv was successful.
+# Compile of lab2_as_tb.sv was successful.
+# 8 compiles, 0 failed with no errors.

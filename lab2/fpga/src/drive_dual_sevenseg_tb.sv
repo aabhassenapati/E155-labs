@@ -3,22 +3,21 @@ Name: Aabhas Senapati
 Email: asenapati@hmc.edu
 Date: 08-09-2025
 
-Aim: Testbench Code to test top module lab2_as and check if it correctly drives the leds, and seven segment display based on switches inputs in simulation. 
+Aim: Testbench Code to test drive_sevenseg module and verify seven segment display patterns and enable signals.
 
 */
 
 `timescale 1ns/1ps
 
-module lab1_as_tb();
-	
-   	logic clk_new;		   
+module drive_dual_sevenseg_tb();
+
+	logic clk;
 	logic reset;
 	logic [3:0] sw6;
 	logic [3:0] extsw;
 	logic enseg1;
 	logic enseg2;
 	logic [6:0] sevenseg;
-	logic [4:0] leds;
 	
 	// Error counter
 	int error_count = 0;
@@ -45,13 +44,16 @@ module lab1_as_tb();
 	};
 
 	// DUT instantiation
-	lab2_as dut(reset,sw6,extsw,enseg1,enseg2,sevenseg,leds);
+	drive_dual_sevenseg dut(clk, reset, sw6, extsw, enseg1, enseg2, sevenseg);
 
-	// map the clock signal to visualize
-	assign clk_new = dut.clk_new;
+	// Simple clock generation
+	initial begin
+		clk = 0;
+		forever #1 clk = ~clk;
+	end
 
 	initial begin 
-		$display("Starting lab2_as testbench...");
+		$display("Starting drive_dual_sevenseg testbench...");
 		
 		// Reset sequence - active LOW reset
 		reset = 1'b1; #1;
@@ -72,7 +74,7 @@ module lab1_as_tb();
 		
 		// Test if enable segment signal switches correctly with the divided clock signal
 		
-		wait(clk_new);
+		wait(clk);
 		#1
 		total_tests++;
 		assert(enseg1 == 1 && enseg2 == 0) begin
@@ -82,7 +84,7 @@ module lab1_as_tb();
 			error_count++;
 		end
 		
-		wait(~clk_new);
+		wait(~clk);
 		#1
 		total_tests++;
 		assert(enseg1 == 0 && enseg2 == 1) begin
@@ -91,29 +93,19 @@ module lab1_as_tb();
 			$display("ERROR: Segment switching does not work correctly when clock signal is low");
 			error_count++;
 		end
-			
+
 		// Test all combinations of sw6 and extsw (16 x 16 = 256 test cases)
 		for(int i = 0; i < 16; i++) begin
 			for(int j = 0; j < 16; j++) begin
 				sw6 = i[3:0];
 				extsw = j[3:0];
 				
-				#1000; // Wait for multiple clock cycles to see both displays alternate
-				
-				// Check LED sum
-				total_tests++;
-				assert(leds == (sw6 + extsw)) begin
-					$display("PASS: sw6=%h, extsw=%h, LEDs=%h", sw6, extsw, leds);
-				end else begin
-					$display("ERROR: sw6=%h, extsw=%h, LEDs=%h (expected %h)", 
-						sw6, extsw, leds, sw6 + extsw);
-					error_count++;
-				end
+				#1000; // Wait for multiple clock cycles
 				
 				// Sample seven segment display during both phases
 				// Wait for enseg1 to be active (displaying extsw)
 				wait(enseg1 == 0 && enseg2 == 1);
-				#1000; // Small delay to ensure stable output (0.1ms)
+				#1000; // Small delay to ensure stable output
 				total_tests++;
 				assert(sevenseg == expected_sevenseg[extsw]) begin
 					$display("PASS: extsw=%h displayed correctly on seg1", extsw);
@@ -138,7 +130,7 @@ module lab1_as_tb();
 		end
 		
 		// Final error count
-		$display("\nlab2_as Testbench completed!");
+		$display("\ndrive_dual_sevenseg testbench completed!");
 		$display("Total Tests: %0d", total_tests);
 		$display("Total Errors: %0d", error_count);
 		if(error_count == 0) 
@@ -148,4 +140,5 @@ module lab1_as_tb();
 		
 		$finish;
 	end
+
 endmodule

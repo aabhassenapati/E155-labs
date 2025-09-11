@@ -7,37 +7,22 @@ Aim: Module Code for driving the dual seven segment display, based on the inputs
 
 */
 
-module drive_sevenseg( input logic clk,
-					   input logic reset,
-					   input logic [3:0] sw6,
-					   input logic [3:0] extsw,
-					   output logic enseg1,
-					   output logic enseg2,
-					   output logic [6:0] sevenseg);
-					   
-   logic clk_new;
-   logic [23:0] counter; 
-   
-   // Counter that divides the clock signal by 50000 to get 240 Hz led blinking from 24MHz clock
-   always_ff @(posedge clk, negedge reset) begin
-     if(reset == 0) begin
-		counter <= 0;
-		clk_new <= 0;
-	 end
-	 else if (counter >= 'd50000) begin
-		 clk_new <= ~clk_new;
-		 counter <= 0;
-	 end
-     else begin 
-		counter <= counter + 1;
-	 end
-   end
+module drive_dual_sevenseg(input logic clk_new,
+						   input logic reset,
+						   input logic [3:0] sw6,
+						   input logic [3:0] extsw,
+						   output logic enseg1,
+						   output logic enseg2,
+						   output logic [6:0] sevenseg);					   
    
 // leds work on inverted logic where the corresponding segnment of led turns on when its pulled down to ground, ie active low;
 
+
+// Enables segment 2 on the when clock is high, and segment 1 when clock is low
   assign enseg1 = reset?(clk_new?1:0):1; 
   assign enseg2 = reset?(clk_new?0:1):1; 
   
+//decoder to display 4 bit switch input of the enables segment on the corresponding 7 segment display.
   always_comb begin
 	case(clk_new?sw6:extsw)
 		4'h0: sevenseg = 7'b1000000; // 0
@@ -56,7 +41,8 @@ module drive_sevenseg( input logic clk,
 		4'hd: sevenseg = 7'b0100001; // d
 		4'he: sevenseg = 7'b0000110; // E
 		4'hf: sevenseg = 7'b0001110; // F
-	 default: sevenseg = 7'b1111111; // All off
+		default: sevenseg = 7'b1111111; // All off
 	endcase
   end
+  
 endmodule

@@ -15,15 +15,17 @@ module lab2_as(input logic reset,
 			   output logic [6:0] sevenseg,
 			   output logic [4:0] leds);
 				
-				logic int_osc;
+				logic int_osc, clk_new;
 				
 				// Internal high-speed oscillator
 				HSOSC #(.CLKHF_DIV(2'b01)) // This divides the 48 MHz internal clock into 24 MHz, as it divides the clock by 2^1
 				hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(int_osc));
 				
-				assign leds = sw6 + extsw;
+				four_bit_adder fba(sw6, extsw, leds);
 				
-				drive_sevenseg dss(int_osc, reset, sw6, extsw, enseg1, enseg2, sevenseg);
+				clock_divider cd(int_osc, reset, clk_new);
+				
+				drive_dual_sevenseg ddss(clk_new, reset, sw6, extsw, enseg1, enseg2, sevenseg);
 				
 endmodule
 
